@@ -17,9 +17,9 @@ touchline(win, s, c) = wtouchln(win, s, c, 1)
 untouchwin(win) = wtouchln(win, 0, getmaxywin, 0)
 
 box(win, v, h) = wborder(win, v, v, h, h, 0, 0, 0, 0)
-border(ls, rs, ts, bs, tl, tr, bl, br) = wborder(stdscr, ls, rs, ts, bs, tl, tr, bl, br)
-hline(ch, n) = whline(stdscr, ch, (n))
-vline(ch, n) = wvline(stdscr, ch, (n))
+border(ls, rs, ts, bs, tl, tr, bl, br) = wborder(stdscr(), ls, rs, ts, bs, tl, tr, bl, br)
+hline(ch, n) = whline(stdscr(), ch, (n))
+vline(ch, n) = wvline(stdscr(), ch, (n))
 
 winstr(w, s) = winnstr(w, s, -1)
 winchstr(w, s) = winchnstr(w, s, -1)
@@ -34,3 +34,8 @@ waddchstr(win, str) = waddchnstr(win, str, -1)
 
 COLOR_PAIR(n) = NCURSES_BITS(n, 0) & A_COLOR
 PAIR_NUMBER(a) = NCURSES_CAST(Cint, ((NCURSES_CAST(Culong, (a)) & A_COLOR) >> NCURSES_ATTR_SHIFT))
+
+for var in (:curscr, :stdscr, :newscr, :ttytype, :COLORS, :COLOR_PAIRS, :COLS,
+            :ESCDELAY, :LINES, :TABSIZE)
+    @eval $var() = unsafe_load(cglobal(($(QuoteNode(var)), libncurses), Ptr{Cvoid}))
+end
