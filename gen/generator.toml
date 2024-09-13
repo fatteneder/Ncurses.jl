@@ -7,7 +7,6 @@ output_file_path = "../src/Ncurses.jl"
 module_name = "Ncurses"
 
 prologue_file_path = "prologue.jl"
-epilogue_file_path = "epilogue.jl"
 output_ignorelist = [
     "FORM_IMPEXP",
     "MENU_IMPEXP",

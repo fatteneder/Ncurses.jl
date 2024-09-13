@@ -11,6 +11,7 @@ options = load_options(joinpath(@__DIR__, "generator.toml"))
 # add compiler flags, e.g. "-DXXXXXXXXX"
 args = get_default_args()  # Note you must call this function first and then append your own flags
 push!(args, "-I$include_dir")
+push!(args, "-DNCURSES_NOMACROS")
 
 headers = [joinpath(ncurses_dir, header) for header in readdir(ncurses_dir) if endswith(header, ".h")]
 # there is also an experimental `detect_headers` function for auto-detecting top-level headers in the directory
