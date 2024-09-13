@@ -95,188 +95,48 @@ end
 
 const WINDOW = _win_st
 
+function getcury(arg1)
+    ccall((:getcury, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function getcurx(arg1)
+    ccall((:getcurx, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function getbegy(arg1)
+    ccall((:getbegy, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function getbegx(arg1)
+    ccall((:getbegx, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function getmaxy(arg1)
+    ccall((:getmaxy, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function getmaxx(arg1)
+    ccall((:getmaxx, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function getpary(arg1)
+    ccall((:getpary, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function getparx(arg1)
+    ccall((:getparx, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function is_leaveok(arg1)
+    ccall((:is_leaveok, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
 function leaveok(arg1, arg2)
     ccall((:leaveok, libncurses), Cint, (Ptr{WINDOW}, Bool), arg1, arg2)
 end
 
 function wmove(arg1, arg2, arg3)
     ccall((:wmove, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
-end
-
-function wgetnstr(arg1, arg2, arg3)
-    ccall((:wgetnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}, Cint), arg1, arg2, arg3)
-end
-
-function setupterm(arg1, arg2, arg3)
-    ccall((:setupterm, libncurses), Cint, (Ptr{Cchar}, Cint, Ptr{Cint}), arg1, arg2, arg3)
-end
-
-function reset_prog_mode()
-    ccall((:reset_prog_mode, libncurses), Cint, ())
-end
-
-function reset_shell_mode()
-    ccall((:reset_shell_mode, libncurses), Cint, ())
-end
-
-function def_prog_mode()
-    ccall((:def_prog_mode, libncurses), Cint, ())
-end
-
-function cbreak()
-    ccall((:cbreak, libncurses), Cint, ())
-end
-
-function nocbreak()
-    ccall((:nocbreak, libncurses), Cint, ())
-end
-
-function wattrset(arg1, arg2)
-    ccall((:wattrset, libncurses), Cint, (Ptr{WINDOW}, Cint), arg1, arg2)
-end
-
-function wattr_on(arg1, arg2, arg3)
-    ccall((:wattr_on, libncurses), Cint, (Ptr{WINDOW}, attr_t, Ptr{Cvoid}), arg1, arg2, arg3)
-end
-
-function wattr_off(arg1, arg2, arg3)
-    ccall((:wattr_off, libncurses), Cint, (Ptr{WINDOW}, attr_t, Ptr{Cvoid}), arg1, arg2, arg3)
-end
-
-function wscrl(arg1, arg2)
-    ccall((:wscrl, libncurses), Cint, (Ptr{WINDOW}, Cint), arg1, arg2)
-end
-
-function wtouchln(arg1, arg2, arg3, arg4)
-    ccall((:wtouchln, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Cint), arg1, arg2, arg3, arg4)
-end
-
-function wborder(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
-    ccall((:wborder, libncurses), Cint, (Ptr{WINDOW}, chtype, chtype, chtype, chtype, chtype, chtype, chtype, chtype), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
-end
-
-function whline(arg1, arg2, arg3)
-    ccall((:whline, libncurses), Cint, (Ptr{WINDOW}, chtype, Cint), arg1, arg2, arg3)
-end
-
-function wvline(arg1, arg2, arg3)
-    ccall((:wvline, libncurses), Cint, (Ptr{WINDOW}, chtype, Cint), arg1, arg2, arg3)
-end
-
-function winnstr(arg1, arg2, arg3)
-    ccall((:winnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}, Cint), arg1, arg2, arg3)
-end
-
-function winchnstr(arg1, arg2, arg3)
-    ccall((:winchnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{chtype}, Cint), arg1, arg2, arg3)
-end
-
-function winsnstr(arg1, arg2, arg3)
-    ccall((:winsnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}, Cint), arg1, arg2, arg3)
-end
-
-function wredrawln(arg1, arg2, arg3)
-    ccall((:wredrawln, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
-end
-
-function waddnstr(arg1, arg2, arg3)
-    ccall((:waddnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}, Cint), arg1, arg2, arg3)
-end
-
-function waddchnstr(arg1, arg2, arg3)
-    ccall((:waddchnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{chtype}, Cint), arg1, arg2, arg3)
-end
-
-function waddch(arg1, arg2)
-    ccall((:waddch, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
-end
-
-function wattr_get(arg1, arg2, arg3, arg4)
-    ccall((:wattr_get, libncurses), Cint, (Ptr{WINDOW}, Ptr{attr_t}, Ptr{Cshort}, Ptr{Cvoid}), arg1, arg2, arg3, arg4)
-end
-
-function wattr_set(arg1, arg2, arg3, arg4)
-    ccall((:wattr_set, libncurses), Cint, (Ptr{WINDOW}, attr_t, Cshort, Ptr{Cvoid}), arg1, arg2, arg3, arg4)
-end
-
-function wbkgd(arg1, arg2)
-    ccall((:wbkgd, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
-end
-
-function wbkgdset(arg1, arg2)
-    ccall((:wbkgdset, libncurses), Cvoid, (Ptr{WINDOW}, chtype), arg1, arg2)
-end
-
-function wchgat(arg1, arg2, arg3, arg4, arg5)
-    ccall((:wchgat, libncurses), Cint, (Ptr{WINDOW}, Cint, attr_t, Cshort, Ptr{Cvoid}), arg1, arg2, arg3, arg4, arg5)
-end
-
-function wclear(arg1)
-    ccall((:wclear, libncurses), Cint, (Ptr{WINDOW},), arg1)
-end
-
-function wclrtobot(arg1)
-    ccall((:wclrtobot, libncurses), Cint, (Ptr{WINDOW},), arg1)
-end
-
-function wclrtoeol(arg1)
-    ccall((:wclrtoeol, libncurses), Cint, (Ptr{WINDOW},), arg1)
-end
-
-function wcolor_set(arg1, arg2, arg3)
-    ccall((:wcolor_set, libncurses), Cint, (Ptr{WINDOW}, Cshort, Ptr{Cvoid}), arg1, arg2, arg3)
-end
-
-function wdelch(arg1)
-    ccall((:wdelch, libncurses), Cint, (Ptr{WINDOW},), arg1)
-end
-
-function winsdelln(arg1, arg2)
-    ccall((:winsdelln, libncurses), Cint, (Ptr{WINDOW}, Cint), arg1, arg2)
-end
-
-function wechochar(arg1, arg2)
-    ccall((:wechochar, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
-end
-
-function werase(arg1)
-    ccall((:werase, libncurses), Cint, (Ptr{WINDOW},), arg1)
-end
-
-function wgetch(arg1)
-    ccall((:wgetch, libncurses), Cint, (Ptr{WINDOW},), arg1)
-end
-
-function winch(arg1)
-    ccall((:winch, libncurses), chtype, (Ptr{WINDOW},), arg1)
-end
-
-function winsch(arg1, arg2)
-    ccall((:winsch, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
-end
-
-function wrefresh(arg1)
-    ccall((:wrefresh, libncurses), Cint, (Ptr{WINDOW},), arg1)
-end
-
-function wsetscrreg(arg1, arg2, arg3)
-    ccall((:wsetscrreg, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
-end
-
-function wtimeout(arg1, arg2)
-    ccall((:wtimeout, libncurses), Cvoid, (Ptr{WINDOW}, Cint), arg1, arg2)
-end
-
-function slk_attroff(arg1)
-    ccall((:slk_attroff, libncurses), Cint, (chtype,), arg1)
-end
-
-function slk_attron(arg1)
-    ccall((:slk_attron, libncurses), Cint, (chtype,), arg1)
-end
-
-function wmouse_trafo(arg1, arg2, arg3, arg4)
-    ccall((:wmouse_trafo, libncurses), Bool, (Ptr{WINDOW}, Ptr{Cint}, Ptr{Cint}, Bool), arg1, arg2, arg3, arg4)
 end
 
 function _tracechtype(arg1)
@@ -293,6 +153,54 @@ mutable struct screen end
 
 const SCREEN = screen
 
+function addch(arg1)
+    ccall((:addch, libncurses), Cint, (chtype,), arg1)
+end
+
+function addchnstr(arg1, arg2)
+    ccall((:addchnstr, libncurses), Cint, (Ptr{chtype}, Cint), arg1, arg2)
+end
+
+function addchstr(arg1)
+    ccall((:addchstr, libncurses), Cint, (Ptr{chtype},), arg1)
+end
+
+function addnstr(arg1, arg2)
+    ccall((:addnstr, libncurses), Cint, (Ptr{Cchar}, Cint), arg1, arg2)
+end
+
+function addstr(arg1)
+    ccall((:addstr, libncurses), Cint, (Ptr{Cchar},), arg1)
+end
+
+function attroff(arg1)
+    ccall((:attroff, libncurses), Cint, (Cint,), arg1)
+end
+
+function attron(arg1)
+    ccall((:attron, libncurses), Cint, (Cint,), arg1)
+end
+
+function attrset(arg1)
+    ccall((:attrset, libncurses), Cint, (Cint,), arg1)
+end
+
+function attr_get(arg1, arg2, arg3)
+    ccall((:attr_get, libncurses), Cint, (Ptr{attr_t}, Ptr{Cshort}, Ptr{Cvoid}), arg1, arg2, arg3)
+end
+
+function attr_off(arg1, arg2)
+    ccall((:attr_off, libncurses), Cint, (attr_t, Ptr{Cvoid}), arg1, arg2)
+end
+
+function attr_on(arg1, arg2)
+    ccall((:attr_on, libncurses), Cint, (attr_t, Ptr{Cvoid}), arg1, arg2)
+end
+
+function attr_set(arg1, arg2, arg3)
+    ccall((:attr_set, libncurses), Cint, (attr_t, Cshort, Ptr{Cvoid}), arg1, arg2, arg3)
+end
+
 function baudrate()
     ccall((:baudrate, libncurses), Cint, ())
 end
@@ -301,16 +209,60 @@ function beep()
     ccall((:beep, libncurses), Cint, ())
 end
 
+function bkgd(arg1)
+    ccall((:bkgd, libncurses), Cint, (chtype,), arg1)
+end
+
+function bkgdset(arg1)
+    ccall((:bkgdset, libncurses), Cvoid, (chtype,), arg1)
+end
+
+function border(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+    ccall((:border, libncurses), Cint, (chtype, chtype, chtype, chtype, chtype, chtype, chtype, chtype), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+end
+
+function box(arg1, arg2, arg3)
+    ccall((:box, libncurses), Cint, (Ptr{WINDOW}, chtype, chtype), arg1, arg2, arg3)
+end
+
 function can_change_color()
     ccall((:can_change_color, libncurses), Bool, ())
+end
+
+function cbreak()
+    ccall((:cbreak, libncurses), Cint, ())
+end
+
+function chgat(arg1, arg2, arg3, arg4)
+    ccall((:chgat, libncurses), Cint, (Cint, attr_t, Cshort, Ptr{Cvoid}), arg1, arg2, arg3, arg4)
+end
+
+function clear()
+    ccall((:clear, libncurses), Cint, ())
 end
 
 function clearok(arg1, arg2)
     ccall((:clearok, libncurses), Cint, (Ptr{WINDOW}, Bool), arg1, arg2)
 end
 
+function clrtobot()
+    ccall((:clrtobot, libncurses), Cint, ())
+end
+
+function clrtoeol()
+    ccall((:clrtoeol, libncurses), Cint, ())
+end
+
 function color_content(arg1, arg2, arg3, arg4)
     ccall((:color_content, libncurses), Cint, (Cshort, Ptr{Cshort}, Ptr{Cshort}, Ptr{Cshort}), arg1, arg2, arg3, arg4)
+end
+
+function color_set(arg1, arg2)
+    ccall((:color_set, libncurses), Cint, (Cshort, Ptr{Cvoid}), arg1, arg2)
+end
+
+function COLOR_PAIR(arg1)
+    ccall((:COLOR_PAIR, libncurses), Cint, (Cint,), arg1)
 end
 
 function copywin(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
@@ -321,6 +273,10 @@ function curs_set(arg1)
     ccall((:curs_set, libncurses), Cint, (Cint,), arg1)
 end
 
+function def_prog_mode()
+    ccall((:def_prog_mode, libncurses), Cint, ())
+end
+
 function def_shell_mode()
     ccall((:def_shell_mode, libncurses), Cint, ())
 end
@@ -329,12 +285,20 @@ function delay_output(arg1)
     ccall((:delay_output, libncurses), Cint, (Cint,), arg1)
 end
 
+function delch()
+    ccall((:delch, libncurses), Cint, ())
+end
+
 function delscreen(arg1)
     ccall((:delscreen, libncurses), Cvoid, (Ptr{SCREEN},), arg1)
 end
 
 function delwin(arg1)
     ccall((:delwin, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function deleteln()
+    ccall((:deleteln, libncurses), Cint, ())
 end
 
 function derwin(arg1, arg2, arg3, arg4, arg5)
@@ -351,6 +315,14 @@ end
 
 function echo()
     ccall((:echo, libncurses), Cint, ())
+end
+
+function echochar(arg1)
+    ccall((:echochar, libncurses), Cint, (chtype,), arg1)
+end
+
+function erase()
+    ccall((:erase, libncurses), Cint, ())
 end
 
 function endwin()
@@ -373,6 +345,22 @@ function flushinp()
     ccall((:flushinp, libncurses), Cint, ())
 end
 
+function getbkgd(arg1)
+    ccall((:getbkgd, libncurses), chtype, (Ptr{WINDOW},), arg1)
+end
+
+function getch()
+    ccall((:getch, libncurses), Cint, ())
+end
+
+function getnstr(arg1, arg2)
+    ccall((:getnstr, libncurses), Cint, (Ptr{Cchar}, Cint), arg1, arg2)
+end
+
+function getstr(arg1)
+    ccall((:getstr, libncurses), Cint, (Ptr{Cchar},), arg1)
+end
+
 function getwin(arg1)
     ccall((:getwin, libncurses), Ptr{WINDOW}, (Ptr{Libc.FILE},), arg1)
 end
@@ -393,6 +381,10 @@ function has_il()
     ccall((:has_il, libncurses), Bool, ())
 end
 
+function hline(arg1, arg2)
+    ccall((:hline, libncurses), Cint, (chtype, Cint), arg1, arg2)
+end
+
 function idcok(arg1, arg2)
     ccall((:idcok, libncurses), Cvoid, (Ptr{WINDOW}, Bool), arg1, arg2)
 end
@@ -403,6 +395,18 @@ end
 
 function immedok(arg1, arg2)
     ccall((:immedok, libncurses), Cvoid, (Ptr{WINDOW}, Bool), arg1, arg2)
+end
+
+function inch()
+    ccall((:inch, libncurses), chtype, ())
+end
+
+function inchnstr(arg1, arg2)
+    ccall((:inchnstr, libncurses), Cint, (Ptr{chtype}, Cint), arg1, arg2)
+end
+
+function inchstr(arg1)
+    ccall((:inchstr, libncurses), Cint, (Ptr{chtype},), arg1)
 end
 
 function initscr()
@@ -417,12 +421,44 @@ function init_pair(arg1, arg2, arg3)
     ccall((:init_pair, libncurses), Cint, (Cshort, Cshort, Cshort), arg1, arg2, arg3)
 end
 
+function innstr(arg1, arg2)
+    ccall((:innstr, libncurses), Cint, (Ptr{Cchar}, Cint), arg1, arg2)
+end
+
+function insch(arg1)
+    ccall((:insch, libncurses), Cint, (chtype,), arg1)
+end
+
+function insdelln(arg1)
+    ccall((:insdelln, libncurses), Cint, (Cint,), arg1)
+end
+
+function insertln()
+    ccall((:insertln, libncurses), Cint, ())
+end
+
+function insnstr(arg1, arg2)
+    ccall((:insnstr, libncurses), Cint, (Ptr{Cchar}, Cint), arg1, arg2)
+end
+
+function insstr(arg1)
+    ccall((:insstr, libncurses), Cint, (Ptr{Cchar},), arg1)
+end
+
+function instr(arg1)
+    ccall((:instr, libncurses), Cint, (Ptr{Cchar},), arg1)
+end
+
 function intrflush(arg1, arg2)
     ccall((:intrflush, libncurses), Cint, (Ptr{WINDOW}, Bool), arg1, arg2)
 end
 
 function isendwin()
     ccall((:isendwin, libncurses), Bool, ())
+end
+
+function is_linetouched(arg1, arg2)
+    ccall((:is_linetouched, libncurses), Bool, (Ptr{WINDOW}, Cint), arg1, arg2)
 end
 
 function is_wintouched(arg1)
@@ -449,16 +485,180 @@ function meta(arg1, arg2)
     ccall((:meta, libncurses), Cint, (Ptr{WINDOW}, Bool), arg1, arg2)
 end
 
+function move(arg1, arg2)
+    ccall((:move, libncurses), Cint, (Cint, Cint), arg1, arg2)
+end
+
+function mvaddch(arg1, arg2, arg3)
+    ccall((:mvaddch, libncurses), Cint, (Cint, Cint, chtype), arg1, arg2, arg3)
+end
+
+function mvaddchnstr(arg1, arg2, arg3, arg4)
+    ccall((:mvaddchnstr, libncurses), Cint, (Cint, Cint, Ptr{chtype}, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvaddchstr(arg1, arg2, arg3)
+    ccall((:mvaddchstr, libncurses), Cint, (Cint, Cint, Ptr{chtype}), arg1, arg2, arg3)
+end
+
+function mvaddnstr(arg1, arg2, arg3, arg4)
+    ccall((:mvaddnstr, libncurses), Cint, (Cint, Cint, Ptr{Cchar}, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvaddstr(arg1, arg2, arg3)
+    ccall((:mvaddstr, libncurses), Cint, (Cint, Cint, Ptr{Cchar}), arg1, arg2, arg3)
+end
+
+function mvchgat(arg1, arg2, arg3, arg4, arg5, arg6)
+    ccall((:mvchgat, libncurses), Cint, (Cint, Cint, Cint, attr_t, Cshort, Ptr{Cvoid}), arg1, arg2, arg3, arg4, arg5, arg6)
+end
+
 function mvcur(arg1, arg2, arg3, arg4)
     ccall((:mvcur, libncurses), Cint, (Cint, Cint, Cint, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvdelch(arg1, arg2)
+    ccall((:mvdelch, libncurses), Cint, (Cint, Cint), arg1, arg2)
 end
 
 function mvderwin(arg1, arg2, arg3)
     ccall((:mvderwin, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
 end
 
+function mvgetch(arg1, arg2)
+    ccall((:mvgetch, libncurses), Cint, (Cint, Cint), arg1, arg2)
+end
+
+function mvgetnstr(arg1, arg2, arg3, arg4)
+    ccall((:mvgetnstr, libncurses), Cint, (Cint, Cint, Ptr{Cchar}, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvgetstr(arg1, arg2, arg3)
+    ccall((:mvgetstr, libncurses), Cint, (Cint, Cint, Ptr{Cchar}), arg1, arg2, arg3)
+end
+
+function mvhline(arg1, arg2, arg3, arg4)
+    ccall((:mvhline, libncurses), Cint, (Cint, Cint, chtype, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvinch(arg1, arg2)
+    ccall((:mvinch, libncurses), chtype, (Cint, Cint), arg1, arg2)
+end
+
+function mvinchnstr(arg1, arg2, arg3, arg4)
+    ccall((:mvinchnstr, libncurses), Cint, (Cint, Cint, Ptr{chtype}, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvinchstr(arg1, arg2, arg3)
+    ccall((:mvinchstr, libncurses), Cint, (Cint, Cint, Ptr{chtype}), arg1, arg2, arg3)
+end
+
+function mvinnstr(arg1, arg2, arg3, arg4)
+    ccall((:mvinnstr, libncurses), Cint, (Cint, Cint, Ptr{Cchar}, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvinsch(arg1, arg2, arg3)
+    ccall((:mvinsch, libncurses), Cint, (Cint, Cint, chtype), arg1, arg2, arg3)
+end
+
+function mvinsnstr(arg1, arg2, arg3, arg4)
+    ccall((:mvinsnstr, libncurses), Cint, (Cint, Cint, Ptr{Cchar}, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvinsstr(arg1, arg2, arg3)
+    ccall((:mvinsstr, libncurses), Cint, (Cint, Cint, Ptr{Cchar}), arg1, arg2, arg3)
+end
+
+function mvinstr(arg1, arg2, arg3)
+    ccall((:mvinstr, libncurses), Cint, (Cint, Cint, Ptr{Cchar}), arg1, arg2, arg3)
+end
+
+function mvvline(arg1, arg2, arg3, arg4)
+    ccall((:mvvline, libncurses), Cint, (Cint, Cint, chtype, Cint), arg1, arg2, arg3, arg4)
+end
+
+function mvwaddch(arg1, arg2, arg3, arg4)
+    ccall((:mvwaddch, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, chtype), arg1, arg2, arg3, arg4)
+end
+
+function mvwaddchnstr(arg1, arg2, arg3, arg4, arg5)
+    ccall((:mvwaddchnstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{chtype}, Cint), arg1, arg2, arg3, arg4, arg5)
+end
+
+function mvwaddchstr(arg1, arg2, arg3, arg4)
+    ccall((:mvwaddchstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{chtype}), arg1, arg2, arg3, arg4)
+end
+
+function mvwaddnstr(arg1, arg2, arg3, arg4, arg5)
+    ccall((:mvwaddnstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{Cchar}, Cint), arg1, arg2, arg3, arg4, arg5)
+end
+
+function mvwaddstr(arg1, arg2, arg3, arg4)
+    ccall((:mvwaddstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{Cchar}), arg1, arg2, arg3, arg4)
+end
+
+function mvwchgat(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+    ccall((:mvwchgat, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Cint, attr_t, Cshort, Ptr{Cvoid}), arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+end
+
+function mvwdelch(arg1, arg2, arg3)
+    ccall((:mvwdelch, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
+end
+
+function mvwgetch(arg1, arg2, arg3)
+    ccall((:mvwgetch, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
+end
+
+function mvwgetnstr(arg1, arg2, arg3, arg4, arg5)
+    ccall((:mvwgetnstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{Cchar}, Cint), arg1, arg2, arg3, arg4, arg5)
+end
+
+function mvwgetstr(arg1, arg2, arg3, arg4)
+    ccall((:mvwgetstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{Cchar}), arg1, arg2, arg3, arg4)
+end
+
+function mvwhline(arg1, arg2, arg3, arg4, arg5)
+    ccall((:mvwhline, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, chtype, Cint), arg1, arg2, arg3, arg4, arg5)
+end
+
 function mvwin(arg1, arg2, arg3)
     ccall((:mvwin, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
+end
+
+function mvwinch(arg1, arg2, arg3)
+    ccall((:mvwinch, libncurses), chtype, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
+end
+
+function mvwinchnstr(arg1, arg2, arg3, arg4, arg5)
+    ccall((:mvwinchnstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{chtype}, Cint), arg1, arg2, arg3, arg4, arg5)
+end
+
+function mvwinchstr(arg1, arg2, arg3, arg4)
+    ccall((:mvwinchstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{chtype}), arg1, arg2, arg3, arg4)
+end
+
+function mvwinnstr(arg1, arg2, arg3, arg4, arg5)
+    ccall((:mvwinnstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{Cchar}, Cint), arg1, arg2, arg3, arg4, arg5)
+end
+
+function mvwinsch(arg1, arg2, arg3, arg4)
+    ccall((:mvwinsch, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, chtype), arg1, arg2, arg3, arg4)
+end
+
+function mvwinsnstr(arg1, arg2, arg3, arg4, arg5)
+    ccall((:mvwinsnstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{Cchar}, Cint), arg1, arg2, arg3, arg4, arg5)
+end
+
+function mvwinsstr(arg1, arg2, arg3, arg4)
+    ccall((:mvwinsstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{Cchar}), arg1, arg2, arg3, arg4)
+end
+
+function mvwinstr(arg1, arg2, arg3, arg4)
+    ccall((:mvwinstr, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Ptr{Cchar}), arg1, arg2, arg3, arg4)
+end
+
+function mvwvline(arg1, arg2, arg3, arg4, arg5)
+    ccall((:mvwvline, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, chtype, Cint), arg1, arg2, arg3, arg4, arg5)
 end
 
 function napms(arg1)
@@ -479,6 +679,10 @@ end
 
 function nl()
     ccall((:nl, libncurses), Cint, ())
+end
+
+function nocbreak()
+    ccall((:nocbreak, libncurses), Cint, ())
 end
 
 function nodelay(arg1, arg2)
@@ -517,6 +721,10 @@ function pair_content(arg1, arg2, arg3)
     ccall((:pair_content, libncurses), Cint, (Cshort, Ptr{Cshort}, Ptr{Cshort}), arg1, arg2, arg3)
 end
 
+function PAIR_NUMBER(arg1)
+    ccall((:PAIR_NUMBER, libncurses), Cint, (Cint,), arg1)
+end
+
 function pechochar(arg1, arg2)
     ccall((:pechochar, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
 end
@@ -541,8 +749,24 @@ function raw()
     ccall((:raw, libncurses), Cint, ())
 end
 
+function redrawwin(arg1)
+    ccall((:redrawwin, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function refresh()
+    ccall((:refresh, libncurses), Cint, ())
+end
+
 function resetty()
     ccall((:resetty, libncurses), Cint, ())
+end
+
+function reset_prog_mode()
+    ccall((:reset_prog_mode, libncurses), Cint, ())
+end
+
+function reset_shell_mode()
+    ccall((:reset_shell_mode, libncurses), Cint, ())
 end
 
 function ripoffline(arg1, arg2)
@@ -561,6 +785,14 @@ function scr_init(arg1)
     ccall((:scr_init, libncurses), Cint, (Ptr{Cchar},), arg1)
 end
 
+function scrl(arg1)
+    ccall((:scrl, libncurses), Cint, (Cint,), arg1)
+end
+
+function scroll(arg1)
+    ccall((:scroll, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
 function scrollok(arg1, arg2)
     ccall((:scrollok, libncurses), Cint, (Ptr{WINDOW}, Bool), arg1, arg2)
 end
@@ -573,8 +805,28 @@ function scr_set(arg1)
     ccall((:scr_set, libncurses), Cint, (Ptr{Cchar},), arg1)
 end
 
+function setscrreg(arg1, arg2)
+    ccall((:setscrreg, libncurses), Cint, (Cint, Cint), arg1, arg2)
+end
+
 function set_term(arg1)
     ccall((:set_term, libncurses), Ptr{SCREEN}, (Ptr{SCREEN},), arg1)
+end
+
+function slk_attroff(arg1)
+    ccall((:slk_attroff, libncurses), Cint, (chtype,), arg1)
+end
+
+function slk_attr_off(arg1, arg2)
+    ccall((:slk_attr_off, libncurses), Cint, (attr_t, Ptr{Cvoid}), arg1, arg2)
+end
+
+function slk_attron(arg1)
+    ccall((:slk_attron, libncurses), Cint, (chtype,), arg1)
+end
+
+function slk_attr_on(arg1, arg2)
+    ccall((:slk_attr_on, libncurses), Cint, (attr_t, Ptr{Cvoid}), arg1, arg2)
 end
 
 function slk_attrset(arg1)
@@ -625,6 +877,14 @@ function slk_touch()
     ccall((:slk_touch, libncurses), Cint, ())
 end
 
+function standout()
+    ccall((:standout, libncurses), Cint, ())
+end
+
+function standend()
+    ccall((:standend, libncurses), Cint, ())
+end
+
 function start_color()
     ccall((:start_color, libncurses), Cint, ())
 end
@@ -649,12 +909,28 @@ function termname()
     ccall((:termname, libncurses), Ptr{Cchar}, ())
 end
 
+function timeout(arg1)
+    ccall((:timeout, libncurses), Cvoid, (Cint,), arg1)
+end
+
+function touchline(arg1, arg2, arg3)
+    ccall((:touchline, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
+end
+
+function touchwin(arg1)
+    ccall((:touchwin, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
 function typeahead(arg1)
     ccall((:typeahead, libncurses), Cint, (Cint,), arg1)
 end
 
 function ungetch(arg1)
     ccall((:ungetch, libncurses), Cint, (Cint,), arg1)
+end
+
+function untouchwin(arg1)
+    ccall((:untouchwin, libncurses), Cint, (Ptr{WINDOW},), arg1)
 end
 
 function use_env(arg1)
@@ -669,12 +945,192 @@ function vidputs(arg1, arg2)
     ccall((:vidputs, libncurses), Cint, (chtype, NCURSES_OUTC), arg1, arg2)
 end
 
+function vline(arg1, arg2)
+    ccall((:vline, libncurses), Cint, (chtype, Cint), arg1, arg2)
+end
+
+function waddch(arg1, arg2)
+    ccall((:waddch, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
+end
+
+function waddchnstr(arg1, arg2, arg3)
+    ccall((:waddchnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{chtype}, Cint), arg1, arg2, arg3)
+end
+
+function waddchstr(arg1, arg2)
+    ccall((:waddchstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{chtype}), arg1, arg2)
+end
+
+function waddnstr(arg1, arg2, arg3)
+    ccall((:waddnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}, Cint), arg1, arg2, arg3)
+end
+
+function waddstr(arg1, arg2)
+    ccall((:waddstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}), arg1, arg2)
+end
+
+function wattron(arg1, arg2)
+    ccall((:wattron, libncurses), Cint, (Ptr{WINDOW}, Cint), arg1, arg2)
+end
+
+function wattroff(arg1, arg2)
+    ccall((:wattroff, libncurses), Cint, (Ptr{WINDOW}, Cint), arg1, arg2)
+end
+
+function wattrset(arg1, arg2)
+    ccall((:wattrset, libncurses), Cint, (Ptr{WINDOW}, Cint), arg1, arg2)
+end
+
+function wattr_get(arg1, arg2, arg3, arg4)
+    ccall((:wattr_get, libncurses), Cint, (Ptr{WINDOW}, Ptr{attr_t}, Ptr{Cshort}, Ptr{Cvoid}), arg1, arg2, arg3, arg4)
+end
+
+function wattr_on(arg1, arg2, arg3)
+    ccall((:wattr_on, libncurses), Cint, (Ptr{WINDOW}, attr_t, Ptr{Cvoid}), arg1, arg2, arg3)
+end
+
+function wattr_off(arg1, arg2, arg3)
+    ccall((:wattr_off, libncurses), Cint, (Ptr{WINDOW}, attr_t, Ptr{Cvoid}), arg1, arg2, arg3)
+end
+
+function wattr_set(arg1, arg2, arg3, arg4)
+    ccall((:wattr_set, libncurses), Cint, (Ptr{WINDOW}, attr_t, Cshort, Ptr{Cvoid}), arg1, arg2, arg3, arg4)
+end
+
+function wbkgd(arg1, arg2)
+    ccall((:wbkgd, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
+end
+
+function wbkgdset(arg1, arg2)
+    ccall((:wbkgdset, libncurses), Cvoid, (Ptr{WINDOW}, chtype), arg1, arg2)
+end
+
+function wborder(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
+    ccall((:wborder, libncurses), Cint, (Ptr{WINDOW}, chtype, chtype, chtype, chtype, chtype, chtype, chtype, chtype), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
+end
+
+function wchgat(arg1, arg2, arg3, arg4, arg5)
+    ccall((:wchgat, libncurses), Cint, (Ptr{WINDOW}, Cint, attr_t, Cshort, Ptr{Cvoid}), arg1, arg2, arg3, arg4, arg5)
+end
+
+function wclear(arg1)
+    ccall((:wclear, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wclrtobot(arg1)
+    ccall((:wclrtobot, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wclrtoeol(arg1)
+    ccall((:wclrtoeol, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wcolor_set(arg1, arg2, arg3)
+    ccall((:wcolor_set, libncurses), Cint, (Ptr{WINDOW}, Cshort, Ptr{Cvoid}), arg1, arg2, arg3)
+end
+
 function wcursyncup(arg1)
     ccall((:wcursyncup, libncurses), Cvoid, (Ptr{WINDOW},), arg1)
 end
 
+function wdelch(arg1)
+    ccall((:wdelch, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wdeleteln(arg1)
+    ccall((:wdeleteln, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wechochar(arg1, arg2)
+    ccall((:wechochar, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
+end
+
+function werase(arg1)
+    ccall((:werase, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wgetch(arg1)
+    ccall((:wgetch, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wgetnstr(arg1, arg2, arg3)
+    ccall((:wgetnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}, Cint), arg1, arg2, arg3)
+end
+
+function wgetstr(arg1, arg2)
+    ccall((:wgetstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}), arg1, arg2)
+end
+
+function whline(arg1, arg2, arg3)
+    ccall((:whline, libncurses), Cint, (Ptr{WINDOW}, chtype, Cint), arg1, arg2, arg3)
+end
+
+function winch(arg1)
+    ccall((:winch, libncurses), chtype, (Ptr{WINDOW},), arg1)
+end
+
+function winchnstr(arg1, arg2, arg3)
+    ccall((:winchnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{chtype}, Cint), arg1, arg2, arg3)
+end
+
+function winchstr(arg1, arg2)
+    ccall((:winchstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{chtype}), arg1, arg2)
+end
+
+function winnstr(arg1, arg2, arg3)
+    ccall((:winnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}, Cint), arg1, arg2, arg3)
+end
+
+function winsch(arg1, arg2)
+    ccall((:winsch, libncurses), Cint, (Ptr{WINDOW}, chtype), arg1, arg2)
+end
+
+function winsdelln(arg1, arg2)
+    ccall((:winsdelln, libncurses), Cint, (Ptr{WINDOW}, Cint), arg1, arg2)
+end
+
+function winsertln(arg1)
+    ccall((:winsertln, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function winsnstr(arg1, arg2, arg3)
+    ccall((:winsnstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}, Cint), arg1, arg2, arg3)
+end
+
+function winsstr(arg1, arg2)
+    ccall((:winsstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}), arg1, arg2)
+end
+
+function winstr(arg1, arg2)
+    ccall((:winstr, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cchar}), arg1, arg2)
+end
+
 function wnoutrefresh(arg1)
     ccall((:wnoutrefresh, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wredrawln(arg1, arg2, arg3)
+    ccall((:wredrawln, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
+end
+
+function wrefresh(arg1)
+    ccall((:wrefresh, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wscrl(arg1, arg2)
+    ccall((:wscrl, libncurses), Cint, (Ptr{WINDOW}, Cint), arg1, arg2)
+end
+
+function wsetscrreg(arg1, arg2, arg3)
+    ccall((:wsetscrreg, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint), arg1, arg2, arg3)
+end
+
+function wstandout(arg1)
+    ccall((:wstandout, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wstandend(arg1)
+    ccall((:wstandend, libncurses), Cint, (Ptr{WINDOW},), arg1)
 end
 
 function wsyncdown(arg1)
@@ -683,6 +1139,18 @@ end
 
 function wsyncup(arg1)
     ccall((:wsyncup, libncurses), Cvoid, (Ptr{WINDOW},), arg1)
+end
+
+function wtimeout(arg1, arg2)
+    ccall((:wtimeout, libncurses), Cvoid, (Ptr{WINDOW}, Cint), arg1, arg2)
+end
+
+function wtouchln(arg1, arg2, arg3, arg4)
+    ccall((:wtouchln, libncurses), Cint, (Ptr{WINDOW}, Cint, Cint, Cint), arg1, arg2, arg3, arg4)
+end
+
+function wvline(arg1, arg2, arg3)
+    ccall((:wvline, libncurses), Cint, (Ptr{WINDOW}, chtype, Cint), arg1, arg2, arg3)
 end
 
 function tigetflag(arg1)
@@ -699,6 +1167,10 @@ end
 
 function putp(arg1)
     ccall((:putp, libncurses), Cint, (Ptr{Cchar},), arg1)
+end
+
+function getattrs(arg1)
+    ccall((:getattrs, libncurses), Cint, (Ptr{WINDOW},), arg1)
 end
 
 # typedef int ( * NCURSES_WINDOW_CB ) ( WINDOW * , void * )
@@ -817,6 +1289,62 @@ end
 
 function nofilter()
     ccall((:nofilter, libncurses), Cvoid, ())
+end
+
+function wgetparent(arg1)
+    ccall((:wgetparent, libncurses), Ptr{WINDOW}, (Ptr{WINDOW},), arg1)
+end
+
+function is_cleared(arg1)
+    ccall((:is_cleared, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_idcok(arg1)
+    ccall((:is_idcok, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_idlok(arg1)
+    ccall((:is_idlok, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_immedok(arg1)
+    ccall((:is_immedok, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_keypad(arg1)
+    ccall((:is_keypad, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_nodelay(arg1)
+    ccall((:is_nodelay, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_notimeout(arg1)
+    ccall((:is_notimeout, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_pad(arg1)
+    ccall((:is_pad, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_scrollok(arg1)
+    ccall((:is_scrollok, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_subwin(arg1)
+    ccall((:is_subwin, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function is_syncok(arg1)
+    ccall((:is_syncok, libncurses), Bool, (Ptr{WINDOW},), arg1)
+end
+
+function wgetdelay(arg1)
+    ccall((:wgetdelay, libncurses), Cint, (Ptr{WINDOW},), arg1)
+end
+
+function wgetscrreg(arg1, arg2, arg3)
+    ccall((:wgetscrreg, libncurses), Cint, (Ptr{WINDOW}, Ptr{Cint}, Ptr{Cint}), arg1, arg2, arg3)
 end
 
 # typedef int ( * NCURSES_SP_OUTC ) ( SCREEN * , int )
@@ -1242,6 +1770,14 @@ function mouseinterval(arg1)
     ccall((:mouseinterval, libncurses), Cint, (Cint,), arg1)
 end
 
+function wmouse_trafo(arg1, arg2, arg3, arg4)
+    ccall((:wmouse_trafo, libncurses), Bool, (Ptr{WINDOW}, Ptr{Cint}, Ptr{Cint}, Bool), arg1, arg2, arg3, arg4)
+end
+
+function mouse_trafo(arg1, arg2, arg3)
+    ccall((:mouse_trafo, libncurses), Bool, (Ptr{Cint}, Ptr{Cint}, Bool), arg1, arg2, arg3)
+end
+
 function has_mouse_sp(arg1)
     ccall((:has_mouse_sp, libncurses), Bool, (Ptr{SCREEN},), arg1)
 end
@@ -1356,87 +1892,87 @@ function Base.getproperty(x::formnode, f::Symbol)
     return getfield(x, f)
 end
 
-struct var"##Ctag#247"
+struct var"##Ctag#285"
     data::NTuple{8, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#247"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#285"}, f::Symbol)
     f === :ofcheck && return Ptr{Ptr{Cvoid}}(x + 0)
     f === :gfcheck && return Ptr{Ptr{Cvoid}}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#247", f::Symbol)
-    r = Ref{var"##Ctag#247"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#247"}, r)
+function Base.getproperty(x::var"##Ctag#285", f::Symbol)
+    r = Ref{var"##Ctag#285"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#285"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#247"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#285"}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-struct var"##Ctag#248"
+struct var"##Ctag#286"
     data::NTuple{8, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#248"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#286"}, f::Symbol)
     f === :occheck && return Ptr{Ptr{Cvoid}}(x + 0)
     f === :gccheck && return Ptr{Ptr{Cvoid}}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#248", f::Symbol)
-    r = Ref{var"##Ctag#248"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#248"}, r)
+function Base.getproperty(x::var"##Ctag#286", f::Symbol)
+    r = Ref{var"##Ctag#286"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#286"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#248"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#286"}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-struct var"##Ctag#249"
+struct var"##Ctag#287"
     data::NTuple{8, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#249"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#287"}, f::Symbol)
     f === :onext && return Ptr{Ptr{Cvoid}}(x + 0)
     f === :gnext && return Ptr{Ptr{Cvoid}}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#249", f::Symbol)
-    r = Ref{var"##Ctag#249"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#249"}, r)
+function Base.getproperty(x::var"##Ctag#287", f::Symbol)
+    r = Ref{var"##Ctag#287"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#287"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#249"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#287"}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-struct var"##Ctag#250"
+struct var"##Ctag#288"
     data::NTuple{8, UInt8}
 end
 
-function Base.getproperty(x::Ptr{var"##Ctag#250"}, f::Symbol)
+function Base.getproperty(x::Ptr{var"##Ctag#288"}, f::Symbol)
     f === :oprev && return Ptr{Ptr{Cvoid}}(x + 0)
     f === :gprev && return Ptr{Ptr{Cvoid}}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::var"##Ctag#250", f::Symbol)
-    r = Ref{var"##Ctag#250"}(x)
-    ptr = Base.unsafe_convert(Ptr{var"##Ctag#250"}, r)
+function Base.getproperty(x::var"##Ctag#288", f::Symbol)
+    r = Ref{var"##Ctag#288"}(x)
+    ptr = Base.unsafe_convert(Ptr{var"##Ctag#288"}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{var"##Ctag#250"}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{var"##Ctag#288"}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
@@ -1452,10 +1988,10 @@ function Base.getproperty(x::Ptr{typenode}, f::Symbol)
     f === :makearg && return Ptr{Ptr{Cvoid}}(x + 32)
     f === :copyarg && return Ptr{Ptr{Cvoid}}(x + 40)
     f === :freearg && return Ptr{Ptr{Cvoid}}(x + 48)
-    f === :fieldcheck && return Ptr{var"##Ctag#247"}(x + 56)
-    f === :charcheck && return Ptr{var"##Ctag#248"}(x + 64)
-    f === :enum_next && return Ptr{var"##Ctag#249"}(x + 72)
-    f === :enum_prev && return Ptr{var"##Ctag#250"}(x + 80)
+    f === :fieldcheck && return Ptr{var"##Ctag#285"}(x + 56)
+    f === :charcheck && return Ptr{var"##Ctag#286"}(x + 64)
+    f === :enum_next && return Ptr{var"##Ctag#287"}(x + 72)
+    f === :enum_prev && return Ptr{var"##Ctag#288"}(x + 80)
     f === :genericarg && return Ptr{Ptr{Cvoid}}(x + 88)
     return getfield(x, f)
 end
@@ -2264,6 +2800,10 @@ end
 
 function restartterm(arg1, arg2, arg3)
     ccall((:restartterm, libncurses), Cint, (Ptr{Cchar}, Cint, Ptr{Cint}), arg1, arg2, arg3)
+end
+
+function setupterm(arg1, arg2, arg3)
+    ccall((:setupterm, libncurses), Cint, (Ptr{Cchar}, Cint, Ptr{Cint}), arg1, arg2, arg3)
 end
 
 function tgetstr(arg1, arg2)
@@ -4207,43 +4747,5 @@ const MAX_TERMCAP_LENGTH = 1023
 const MAX_TERMINFO_LENGTH = 4096
 
 const TERMINFO = "/usr/share/terminfo"
-
-# Missing functions
-
-getattrs(win) = @ccall libncurses.getattrs(win::Ptr{WINDOW})::Cint
-getcurx(win) = @ccall libncurses.getcurx(win::Ptr{WINDOW})::Cint
-getcury(win) = @ccall libncurses.getcury(win::Ptr{WINDOW})::Cint
-getbegx(win) = @ccall libncurses.getbegx(win::Ptr{WINDOW})::Cint
-getbegy(win) = @ccall libncurses.getbegy(win::Ptr{WINDOW})::Cint
-getmaxx(win) = @ccall libncurses.getmaxx(win::Ptr{WINDOW})::Cint
-getmaxy(win) = @ccall libncurses.getmaxy(win::Ptr{WINDOW})::Cint
-getparx(win) = @ccall libncurses.getparx(win::Ptr{WINDOW})::Cint
-getpary(win) = @ccall libncurses.getpary(win::Ptr{WINDOW})::Cint
-
-scroll(win) = wscrl(win, 1)
-
-touchwin(win) = wtouchln(win, 0, getmaxywin, 1)
-touchline(win, s, c) = wtouchln(win, s, c, 1)
-untouchwin(win) = wtouchln(win, 0, getmaxywin, 0)
-
-box(win, v, h) = wborder(win, v, v, h, h, 0, 0, 0, 0)
-border(ls, rs, ts, bs, tl, tr, bl, br) = wborder(stdscr, ls, rs, ts, bs, tl, tr, bl, br)
-hline(ch, n) = whline(stdscr, ch, (n))
-vline(ch, n) = wvline(stdscr, ch, (n))
-
-winstr(w, s) = winnstr(w, s, -1)
-winchstr(w, s) = winchnstr(w, s, -1)
-winsstr(w, s) = winsnstr(w, s, -1)
-
-@static if !Bool(NCURSES_OPAQUE)
-    redrawwin(win) = wredrawln(win, 0, (NCURSES_OK_ADDR(win) ? win._maxy + 1 : -1))
-end
-
-waddstr(win, str) = waddnstr(win, str, -1)
-waddchstr(win, str) = waddchnstr(win, str, -1)
-
-COLOR_PAIR(n) = NCURSES_BITS(n, 0) & A_COLOR
-PAIR_NUMBER(a) = NCURSES_CAST(Cint, ((NCURSES_CAST(Culong, (a)) & A_COLOR) >> NCURSES_ATTR_SHIFT))
-
 
 end # module
